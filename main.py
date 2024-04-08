@@ -125,3 +125,6 @@ def crop_image_by_predict(image: Image, predict: pd.DataFrame(), crop_class_name
     img_crop = image.crop(crop_bbox)
     return(img_crop)
 
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
