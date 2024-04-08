@@ -7,7 +7,7 @@ import cv2
 from typing import Optional
 
 from ultralytics import YOLO
-from ultralytics.utils.plotting import Annotator, colors
+from ultralytics.utils import Annotator, colors
 
 
 # Initialize the models
