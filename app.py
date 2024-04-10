@@ -14,17 +14,21 @@ from ultralytics.utils.plotting import Annotator, colors
 model_sample_detect = YOLO("./models/sample_model/best.pt")
 
 
-def get_image_from_bytes(binary_image: bytes) -> Image:
-    """Convert image from bytes to PIL RGB format
-    
-    **Args:**
-        - **binary_image (bytes):** The binary representation of the image
-    
-    **Returns:**
-        - **PIL.Image:** The image in PIL RGB format
+def get_image_from_bytes(binary_image: bytes, target_size=(768, 768)) -> Image:
     """
-    input_image = Image.open(io.BytesIO(binary_image)).convert("RGB")
-    return input_image
+    Convert binary image data to a PIL Image and resize it to target size.
+
+    Args:
+        binary_image (bytes): The binary representation of the image.
+        target_size (tuple): Desired output size (width, height).
+
+    Returns:
+        PIL.Image: Resized image in PIL format.
+    """
+    with io.BytesIO(binary_image) as image_io:
+        image = Image.open(image_io).convert("RGB")
+        resized_image = image.resize(target_size, Image.ANTIALIAS)
+    return resized_image
 
 
 def get_bytes_from_image(image: Image) -> bytes:
@@ -63,7 +67,7 @@ def transform_predict_to_df(results: list, labeles_dict: dict) -> pd.DataFrame:
     predict_bbox['name'] = predict_bbox["class"].replace(labeles_dict)
     return predict_bbox
 
-def get_model_predict(model: YOLO, input_image: Image, save: bool = False, image_size: int = 1248, conf: float = 0.5, augment: bool = False) -> pd.DataFrame:
+def get_model_predict(model: YOLO, input_image: Image, save: bool = False, image_size: int = 768, conf: float = 0.5, augment: bool = False) -> pd.DataFrame:
     """
     Get the predictions of a model on an input image.
     
