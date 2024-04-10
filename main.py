@@ -80,6 +80,7 @@ def save_openapi_json():
 @app.get("/", include_in_schema=False,  tags=['docs'])
 async def redirect():
     return RedirectResponse("/docs")
+    
 
 
 @app.get('/healthcheck', status_code=status.HTTP_200_OK, tags=['Health Check'])
@@ -96,6 +97,7 @@ def perform_healthcheck():
     }
     '''
     return {'healthcheck': 'Everything OK!'}
+    
 
 
 ######################### Support Func #################################
