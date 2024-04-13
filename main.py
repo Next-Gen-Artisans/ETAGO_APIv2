@@ -32,10 +32,9 @@ logger.add("log.log", rotation="1 MB", level="DEBUG", compression="zip")
 
 # title
 app = FastAPI(
-    title="Object Detection using YOLOv8 and FastAPI Template",
-    description="""Obtain object value out of image
-                    and return image and json result""",
-    version="2023.6.1",
+    title="E-Tago: API (Object Detection using FastAPI and YOLOv8)",
+    description="""This is an API for Personal Information Detection and Censorship in E-Commerce Product Review Images using FastAPI and YOLOv8.""",
+    version="2024.4.1",
 )
 
 handler = Mangum(app)
