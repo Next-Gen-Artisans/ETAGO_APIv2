@@ -32,7 +32,7 @@ logger.add("log.log", rotation="1 MB", level="DEBUG", compression="zip")
 
 # title
 app = FastAPI(
-    title="E-Tago: API (Object Detection using FastAPI and YOLOv8)",
+    title="E-Tago API: Object Detection using FastAPI and YOLOv8",
     description="""This is an API for Personal Information Detection and Censorship in E-Commerce Product Review Images using FastAPI and YOLOv8.""",
     version="2024.4.1",
 )
